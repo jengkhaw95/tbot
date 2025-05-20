@@ -41,7 +41,7 @@ export class Bot {
 		return `https://api.telegram.org/bot${this.token}`;
 	}
 
-	private async callAPI(method: string, payload: object = {}) {
+	async callAPI(method: string, payload: object = {}) {
 		const res = await fetch(`${this.apiUrl}/${method}`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
