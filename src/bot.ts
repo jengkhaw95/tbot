@@ -35,7 +35,13 @@ export class Bot {
 		(ctx: UpdateContext) => void | Promise<void>
 	> = new Map();
 
-	constructor(private token: string) {}
+	private token: string;
+	private secretToken?: string;
+
+	constructor({ token, secretToken }: { token: string; secretToken?: string }) {
+		this.token = token;
+		this.secretToken = secretToken;
+	}
 
 	private get apiUrl() {
 		return `https://api.telegram.org/bot${this.token}`;
@@ -77,8 +83,20 @@ export class Bot {
 		this.commandHandlers.set(cmd, handler);
 	}
 
+	validateSecretToken(input: Headers | string) {
+		if (this.secretToken === undefined) {
+			return true;
+		}
+		if (input instanceof Headers) {
+			const token = input.get("X-Telegram-Bot-Api-Secret-Token");
+			return token === this.secretToken;
+		}
+
+		return input === this.secretToken;
+	}
+
 	async setWebhook(url: string) {
-		await this.callAPI("setWebhook", { url });
+		await this.callAPI("setWebhook", { url, secret_token: this.secretToken });
 	}
 
 	async deleteWebhook() {
