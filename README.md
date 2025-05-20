@@ -18,7 +18,10 @@ pnpm add @jengkhaw95/tbot
 import { Bot } from '@jengkhaw95/tbot';
 
 // Initialize bot with your token
-const bot = new Bot('YOUR_BOT_TOKEN');
+const bot = new Bot({
+  token: 'YOUR_BOT_TOKEN',
+  secretToken: 'YOUR_SECRET_TOKEN' // Optional, for webhook security
+});
 
 // Handle messages
 bot.onMessage(async (message) => {
