@@ -141,15 +141,16 @@ app.post('/webhook', async (req, res) => {
   if (!bot.validateSecretToken(req.headers)) {
     return res.sendStatus(401);
   }
+
+  // Alternatively, validate using the token string directly
+  if (!bot.validateSecretToken(req.headers['X-Telegram-Bot-Api-Secret-Token'])) {
+    // Handle invalid token
+  }
   
   await bot.handleWebhookRequest(req.body);
   res.sendStatus(200);
 });
 
-// Alternatively, validate using the token string directly
-if (!bot.validateSecretToken('YOUR_SECRET_TOKEN')) {
-  // Handle invalid token
-}
 ```
 
 The `validateSecretToken` method helps secure your webhook endpoint by verifying the `X-Telegram-Bot-Api-Secret-Token` header or comparing directly with a token string. When a secret token is set during bot initialization, Telegram will include this token in webhook requests, allowing you to verify that the requests are genuine.
