@@ -1,6 +1,6 @@
 {
 	"name": "@jengkhaw95/tbot",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A simple and easy-to-use Telegram bot API wrapper for TypeScript.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
