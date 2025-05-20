@@ -4,16 +4,24 @@
 	"description": "A simple and easy-to-use Telegram bot API wrapper for TypeScript.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "tsc",
 		"prepublishOnly": "npm run build",
 		"test": "vitest"
 	},
-	"keywords": ["telegram", "bot", "typescript", "telegram-bot-api"],
+	"keywords": [
+		"telegram",
+		"bot",
+		"typescript",
+		"telegram-bot-api"
+	],
 	"author": "Jeng Khaw",
 	"license": "ISC",
 	"devDependencies": {
+		"@types/node": "^22.15.19",
 		"typescript": "^5.8.3",
 		"vitest": "^3.1.4"
 	},
